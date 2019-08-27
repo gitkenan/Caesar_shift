@@ -1,5 +1,5 @@
-# This programme will take a string and output an encrypted
-# version of the string via a Caesar shift. The string 
+
+# The string 
 # package lets us create dictionaries more easily using the 
 # lists string.asci_lowercase
 import string
@@ -8,7 +8,6 @@ import string
 alph_to_num = dict(zip(string.ascii_lowercase, range(0, 26)))
 num_to_alph = dict(zip(range(0, 26), string.ascii_lowercase))
 
-# this funcion performs the shifting itself on lowercase letters,
 # ensuring that spaces get mapped to spaces because we don't want
 # to interfere with them
 def Caesar_shift(string, shift):
@@ -32,7 +31,7 @@ def Caesar_shift(string, shift):
 	return ''.join(done_let)
 
 
-# We load a text file of english words to draw from as a database
+# to draw from as a database
 # for this script to refer to when trying different shifts of 
 # an encoded string
 with open('words_alpha.txt') as word_file:
