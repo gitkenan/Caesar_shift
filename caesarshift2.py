@@ -1,73 +1,61 @@
-# This programme will take a string and output an encrypted
-# version of the string via a Caesar shift. The string 
-# package lets us create dictionaries more easily using the 
-# lists string.asci_lowercase
-import string
-
-# For transferring letters to numbers & visaversa
-alph_to_num = dict(zip(string.ascii_lowercase, range(0, 26)))
-num_to_alph = dict(zip(range(0, 26), string.ascii_lowercase))
-
-# this funcion performs the shifting itself on lowercase letters,
-# ensuring that spaces get mapped to spaces because we don't want
-# to interfere with them
+# to encrypt using ord and chr
 def Caesar_shift(string, shift):
-	letterz = list(str(string))
-	shifted = []
+	shifted = ''			# for filling
+	for symbol in string:
+		if symbol.isalpha():		# if it's an alphabet symbol or not
+			num = ord(symbol)
+			num += int(shift)
 
-	for i in letterz:
-		if i != ' ':
-			shifted.append((int(alph_to_num[i]) + int(shift)) % 26)
+			if symbol.isupper():		# if it's uppercase
+				if num > ord('Z'):
+					num -= 26
+				elif num < ord('A'):
+					num += 26
+			
+			elif symbol.islower():		# if it's lowercase
+				if num > ord('z'):
+					num -= 26
+				elif num < ord('a'):
+					num += 26
+			
+			shifted += chr(num)
 		else:
-			shifted.append(i)
+			shifted += symbol
+	
+	return shifted
 
-	done_let = []
-
-	for i in shifted:
-		if i != ' ':
-			done_let.append(num_to_alph[i])
-		else: 
-			done_let.append(i)
-
-	return ''.join(done_let)
-
-
-# We load a text file of english words to draw from as a database
-# for this script to refer to when trying different shifts of 
+# to draw from as a database
+# to refer to when trying different shifts of 
 # an encoded string
 with open('words_alpha.txt') as word_file:
    	valid_words = set(word_file.read().split())
 
-
-
 def rev_c_shift(string):
-	letterz2 = list(str(string))
+	letterz = list(str(string))
 
-	shifted_lists = [[] for i in range(26)]
+	decipherings = [[] for i in range(26)]
 	
-	
-
 	for k in range(26):
 		global English_count
 		English_count = 0
 		
-		for i in letterz2:
-			if i != ' ':
-				shifted_lists[k].append(Caesar_shift(i, k))
+		for i in letterz:
+			if i.isalpha():
+				decipherings[k].append(Caesar_shift(i, k))
 			else: 
-				shifted_lists[k].append(i)
+				decipherings[k].append(i)
 
-		shifted_lists[k] = ''.join(shifted_lists[k])
-		shifted_lists[k] = shifted_lists[k].split(' ') 
+		decipherings[k] = ''.join(decipherings[k])
+		decipherings[k] = decipherings[k].split(' ') 
 
-		for i in shifted_lists[k]:
+		for i in decipherings[k]:
 			if i in valid_words:
 				English_count += 1
 			else:
 				English_count -= 1
 
 		if English_count > 0:
-			return shifted_lists[k], "also", k, "is what we shifted by"
+			return decipherings[k], "also", k, "is what we shifted by"
 		else:
 			pass
 
