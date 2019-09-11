@@ -4,7 +4,8 @@ I created a way to encrypt and decipher text using the Caeser shift in Python 2 
 ## How to use this app
 First download the words_alpha.txt file and caesershift2.py to the same directory.
 Run with Powershell or command line. 
-For encryption and decryption, the programme will currently only take lowercase strings with spaces and no other characters. 
+This programme has recently been updated to be able to encrypt and decrypt strings with
+or without uppercase letters and special characters.
 
 ```
 What would you like to do?
