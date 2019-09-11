@@ -1,4 +1,6 @@
+
 # to encrypt using ord and chr
+
 def Caesar_shift(string, shift):
 	shifted = ''			# for filling
 	for symbol in string:
@@ -26,6 +28,7 @@ def Caesar_shift(string, shift):
 
 # to draw from as a database
 # to refer to when trying different shifts of 
+# for this script to refer to when trying different shifts of 
 # an encoded string
 with open('words_alpha.txt') as word_file:
    	valid_words = set(word_file.read().split())
