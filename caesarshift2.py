@@ -2,6 +2,13 @@
 # to encrypt using ord and chr
 
 def Caesar_shift(string, shift):
+	"""
+ Encrypts the input text using the Caesar cipher.
+
+ :param text: The text to encrypt.
+ :param shift: The shifting constant.
+ :return: The encrypted string.
+ """
 	shifted = ''			# for filling
 	for symbol in string:
 		if symbol.isalpha():		# if it's an alphabet symbol or not
